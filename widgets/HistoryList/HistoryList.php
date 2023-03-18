@@ -19,7 +19,6 @@ class HistoryList extends Widget
         $model = new HistorySearch();
 
         return $this->render('main', [
-            'model' => $model,
             'linkExport' => $this->getLinkExport(),
             'dataProvider' => $model->search(Yii::$app->request->queryParams)
         ]);

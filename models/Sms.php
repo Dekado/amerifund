@@ -42,9 +42,6 @@ class Sms extends ActiveRecord
     const STATUS_WAIT = 11;
     const STATUS_SENT = 12;
     const STATUS_DELIVERED = 13;
-    const STATUS_FAILED = 14;
-    const STATUS_SUCCESS = 13;
-
 
     /**
      * @inheritdoc
