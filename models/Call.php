@@ -104,7 +104,7 @@ class Call extends ActiveRecord
     /**
      * @return string
      */
-    public function getClient_phone()
+    public function getClientPhone()
     {
         return $this->direction == self::DIRECTION_INCOMING ? $this->phone_from : $this->phone_to;
     }
@@ -114,18 +114,13 @@ class Call extends ActiveRecord
      */
     public function getTotalStatusText()
     {
-        if (
-            $this->status == self::STATUS_NO_ANSWERED
-            && $this->direction == self::DIRECTION_INCOMING
-        ) {
-            return Yii::t('app', 'Missed Call');
-        }
-
-        if (
-            $this->status == self::STATUS_NO_ANSWERED
-            && $this->direction == self::DIRECTION_OUTGOING
-        ) {
-            return Yii::t('app', 'Client No Answer');
+        if ($this->status == self::STATUS_NO_ANSWERED) {
+            if($this->direction == self::DIRECTION_INCOMING) {
+                return Yii::t('app', 'Missed Call');
+            }
+            if($this->direction == self::DIRECTION_OUTGOING) {
+                return Yii::t('app', 'Client No Answer');
+            }
         }
 
         $msg = $this->getFullDirectionText();

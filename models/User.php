@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 
 /**
@@ -22,6 +23,13 @@ class User extends ActiveRecord
     const STATUS_HIDDEN = 1;
     const STATUS_ACTIVE = 10;
 
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::class,
+        ];
+    }
+
     /**
      * @inheritdoc
      */
@@ -36,12 +44,8 @@ class User extends ActiveRecord
     public function rules()
     {
         return [
-            [['username', 'created_at', 'updated_at'], 'required'],
-            [[
-                'status',
-                'created_at',
-                'updated_at',
-            ], 'integer'],
+            [['username'], 'required'],
+            [['status',], 'integer'],
             [[
                 'username',
                 'email',

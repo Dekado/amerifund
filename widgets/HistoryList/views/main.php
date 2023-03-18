@@ -8,7 +8,6 @@ use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider ActiveDataProvider */
-/* @var $model HistorySearch */
 /* @var $linkExport string */
 
 ?>

@@ -17,8 +17,8 @@ use yii\helpers\Html;
 
         <?php if (isset($bodyDatetime)): ?>
             <span>
-       <?= \app\widgets\DateTime\DateTime::widget(['dateTime' => $bodyDatetime]) ?>
-    </span>
+                <?= \app\widgets\DateTime\DateTime::widget(['dateTime' => $bodyDatetime]) ?>
+            </span>
         <?php endif; ?>
     </div>
 

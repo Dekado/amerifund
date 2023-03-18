@@ -28,6 +28,7 @@ use yii\db\ActiveRecord;
  * @property Task $task
  * @property Sms $sms
  * @property Call $call
+ * @property Fax $fax
  */
 class History extends ActiveRecord
 {
@@ -108,6 +109,15 @@ class History extends ActiveRecord
     }
 
     /**
+     * Возвращает имя файла для файла экспорта
+     * @return string
+     */
+    public static function getExportFileName(): string
+    {
+        return 'history-' . time();
+    }
+
+    /**
      * @return array
      */
     public static function getEventTexts()
@@ -156,7 +166,7 @@ class History extends ActiveRecord
     public function getDetailChangedAttribute($attribute)
     {
         $detail = json_decode($this->detail);
-        return isset($detail->changedAttributes->{$attribute}) ? $detail->changedAttributes->{$attribute} : null;
+        return $detail->changedAttributes->{$attribute} ?? null;
     }
 
     /**
@@ -166,7 +176,7 @@ class History extends ActiveRecord
     public function getDetailOldValue($attribute)
     {
         $detail = $this->getDetailChangedAttribute($attribute);
-        return isset($detail->old) ? $detail->old : null;
+        return $detail->old ?? null;
     }
 
     /**
@@ -176,7 +186,7 @@ class History extends ActiveRecord
     public function getDetailNewValue($attribute)
     {
         $detail = $this->getDetailChangedAttribute($attribute);
-        return isset($detail->new) ? $detail->new : null;
+        return $detail->new ?? null;
     }
 
     /**
@@ -186,6 +196,6 @@ class History extends ActiveRecord
     public function getDetailData($attribute)
     {
         $detail = json_decode($this->detail);
-        return isset($detail->data->{$attribute}) ? $detail->data->{$attribute} : null;
+        return $detail->data->{$attribute} ?? null;
     }
 }
